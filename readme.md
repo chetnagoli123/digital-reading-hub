@@ -61,3 +61,12 @@ A full-stack cloud-based digital reading platform where users can browse books, 
 cd backend
 npm install
 npm start
+
+
+cd frontend
+npm install
+npm run dev
+
+SUPABASE_URL=your_url
+SUPABASE_KEY=your_key
+PORT=3001
