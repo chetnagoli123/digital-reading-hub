@@ -6,7 +6,8 @@ pipeline {
 
         stage('Clone Repository') {
             steps {
-                git 'https://github.com/chetnagoli123/digital-reading-hub.git'
+                git branch: 'main',
+                url: 'https://github.com/chetnagoli123/digital-reading-hub.git'
             }
         }
 
