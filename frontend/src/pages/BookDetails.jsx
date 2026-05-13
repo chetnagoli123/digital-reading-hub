@@ -10,7 +10,7 @@ function BookDetails() {
 
   useEffect(() => {
 
-    fetch(`http://localhost:3001/books/${id}`)
+    fetch(`https://digital-reading-hub.onrender.com/books/${id}`)
       .then((res) => res.json())
       .then((data) => setBook(data));
 
@@ -54,16 +54,16 @@ function BookDetails() {
 
       <div className="pdf-viewer-container">
 
-       <a
-  href={book.pdf_url}
-  target="_blank"
-  rel="noopener noreferrer"
-  className="read-pdf-btn"
->
+        <a
+          href={book.pdf_url}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="read-pdf-btn"
+        >
 
-  Open PDF Reader
+          Open PDF Reader
 
-</a>
+        </a>
 
       </div>
 

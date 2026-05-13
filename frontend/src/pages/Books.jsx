@@ -5,7 +5,7 @@ function Books() {
   const [books, setBooks] = useState([]);
 
   useEffect(() => {
-    fetch("http://localhost:3001/books")
+    fetch("https://digital-reading-hub.onrender.com/books")
       .then((res) => res.json())
       .then((data) => setBooks(data));
   }, []);
