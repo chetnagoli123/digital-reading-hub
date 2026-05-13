@@ -1,37 +1,43 @@
 const supabase = require("../config/supabaseClient");
 
+// GET ALL BOOKS
 const getBooks = async (req, res) => {
+  try {
+    const { data, error } = await supabase
+      .from("books")
+      .select("*");
 
-  const { data, error } = await supabase
-    .from("books")
-    .select("*");
+    if (error) {
+      return res.status(500).json({ error: error.message });
+    }
 
-  if (error) {
-    return res.status(500).json({
-      error: error.message,
-    });
+    return res.status(200).json(data);
+  } catch (err) {
+    return res.status(500).json({ error: err.message });
   }
-
-  res.json(data);
 };
 
+// GET BOOK BY ID
 const getBookById = async (req, res) => {
+  try {
+    const id = req.params.id;
 
-  const { id } = req.params;
+    const { data, error } = await supabase
+      .from("books")
+      .select("*")
+      .eq("id", id)
+      .single();
 
-  const { data, error } = await supabase
-    .from("books")
-    .select("*")
-    .eq("id", id)
-    .single();
+    if (error) {
+      return res.status(404).json({
+        error: "Book not found or invalid ID"
+      });
+    }
 
-  if (error) {
-    return res.status(500).json({
-      error: error.message,
-    });
+    return res.status(200).json(data);
+  } catch (err) {
+    return res.status(500).json({ error: err.message });
   }
-
-  res.json(data);
 };
 
 module.exports = {
