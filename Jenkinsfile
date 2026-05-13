@@ -11,15 +11,25 @@ pipeline {
             }
         }
 
-        stage('Build Docker Containers') {
+        stage('Install Frontend Dependencies') {
             steps {
-                sh 'docker compose build'
+                dir('frontend') {
+                    sh 'npm install'
+                }
             }
         }
 
-        stage('Run Containers') {
+        stage('Install Backend Dependencies') {
             steps {
-                sh 'docker compose up -d'
+                dir('backend') {
+                    sh 'npm install'
+                }
+            }
+        }
+
+        stage('Pipeline Success') {
+            steps {
+                echo 'CI/CD Pipeline executed successfully!'
             }
         }
 
